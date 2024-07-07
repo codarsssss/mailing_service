@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'mailings/base.html' %}
 
-</body>
-</html>
+{% block content %}
+  <h2>Список клиентов</h2>
+  <ul>
+    {% for client in object_list %}
+      <li>{{ client.name }} - {{ client.email }}</li>
+      <a href="{% url 'mailings:client_edit' client.pk %}">Редактировать</a>
+      <a href="{% url 'mailings:client_delete' client.pk %}">Удалить</a>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'mailings:client_create' %}">Добавить клиента</a>
+{% endblock %}

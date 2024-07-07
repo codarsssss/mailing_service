@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Client, Message, Mailing
@@ -11,18 +12,18 @@ class ClientListView(ListView):
 class ClientCreateView(CreateView):
     model = Client
     form_class = ClientForm
-    success_url = reverse_lazy('client_list')
+    success_url = reverse_lazy('mailings:client_list')
 
 
 class ClientUpdateView(UpdateView):
     model = Client
     form_class = ClientForm
-    success_url = reverse_lazy('client_list')
+    success_url = reverse_lazy('mailings:client_list')
 
 
 class ClientDeleteView(DeleteView):
     model = Client
-    success_url = reverse_lazy('client_list')
+    success_url = reverse_lazy('mailings:client_list')
 
 
 class MessageListView(ListView):
@@ -32,18 +33,18 @@ class MessageListView(ListView):
 class MessageCreateView(CreateView):
     model = Message
     form_class = MessageForm
-    success_url = reverse_lazy('message_list')
+    success_url = reverse_lazy('mailings:message_list')
 
 
 class MessageUpdateView(UpdateView):
     model = Message
     form_class = MessageForm
-    success_url = reverse_lazy('message_list')
+    success_url = reverse_lazy('mailings:message_list')
 
 
 class MessageDeleteView(DeleteView):
     model = Message
-    success_url = reverse_lazy('message_list')
+    success_url = reverse_lazy('mailings:message_list')
 
 
 class MailingListView(ListView):
@@ -53,15 +54,18 @@ class MailingListView(ListView):
 class MailingCreateView(CreateView):
     model = Mailing
     form_class = MailingForm
-    success_url = reverse_lazy('mailing_list')
+    success_url = reverse_lazy('mailings:mailing_list')
 
 
 class MailingUpdateView(UpdateView):
     model = Mailing
     form_class = MailingForm
-    success_url = reverse_lazy('mailing_list')
+    success_url = reverse_lazy('mailings:mailing_list')
 
 
 class MailingDeleteView(DeleteView):
     model = Mailing
-    success_url = reverse_lazy('mailing_list')
+    success_url = reverse_lazy('mailings:mailing_list')
+
+def index(request):
+    return render(request, 'mailings/base.html')

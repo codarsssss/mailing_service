@@ -4,13 +4,14 @@ from .apps import MailingsConfig
 from .views import (
     ClientListView, ClientCreateView, ClientUpdateView, ClientDeleteView,
     MessageListView, MessageCreateView, MessageUpdateView, MessageDeleteView,
-    MailingListView, MailingCreateView, MailingUpdateView, MailingDeleteView
+    MailingListView, MailingCreateView, MailingUpdateView, MailingDeleteView, index
 )
 
 
 app_name = MailingsConfig.name
 
 urlpatterns = [
+    path('', index, name='index'),
     path('clients/', ClientListView.as_view(), name='client_list'),
     path('clients/create/', ClientCreateView.as_view(), name='client_create'),
     path('clients/<int:pk>/edit/', ClientUpdateView.as_view(), name='client_edit'),
